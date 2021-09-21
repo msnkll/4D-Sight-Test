@@ -29,9 +29,9 @@ def feature_detection(path1,path2):
     img1 = cv.imread(path1)
     img2 = cv.imread(path2)
 
-    # Initiate SIFT detector
+    
     sift = cv.SIFT_create()
-    # find the keypoints and descriptors with SIFT
+    
     kp1, des1 = sift.detectAndCompute(img1, None)
     kp2, des2 = sift.detectAndCompute(img2, None)
 
@@ -40,7 +40,7 @@ def feature_detection(path1,path2):
     search_params = dict(checks=50)
     flann = cv.FlannBasedMatcher(index_params, search_params)
     matches = flann.knnMatch(des1, des2, k=2)
-    # store all the good matches as per Lowe's ratio test.
+    
     good = []
     for m, n in matches:
         if m.distance < 0.7 * n.distance:
@@ -49,14 +49,10 @@ def feature_detection(path1,path2):
     if len(good) > MIN_MATCH_COUNT:
         src_pts = np.float32([kp1[m.queryIdx].pt for m in good]).reshape(-1, 1, 2)
         dst_pts = np.float32([kp2[m.trainIdx].pt for m in good]).reshape(-1, 1, 2)
-        #M, mask = cv.findHomography(src_pts, dst_pts, cv.RANSAC, 5.0)
-        #print(src_pts)
         cv.decomposeHomographyMat
-        #matchesMask = mask.ravel().tolist()
         h, w, d = img1.shape
         pts = np.float32([[0, 0], [0, h - 1], [w - 1, h - 1], [w - 1, 0]]).reshape(-1, 1, 2)
-        #dst = cv.perspectiveTransform(pts, M)
-        #img2 = cv.polylines(img2, [np.int32(dst)], True, 255, 3, cv.LINE_AA)
+        
     else:
         print("Not enough matches are found - {}/{}".format(len(good), MIN_MATCH_COUNT))
 
@@ -86,7 +82,6 @@ f = open("OUTPUT.txt", "a")
 f.write("Camera pose transformation matrices in img2 w.r.t img1.. \n Rotation: \n"+str(r11)+"\n Translation: \n"+str(t11))
 f.write("\n---------------------------------------------------------\n")
 f.write("Camera pose transformation matrices in img2 w.r.t img1.. \n Rotation: \n"+str(r21)+"\n Translation: \n"+str(t21))
+f.close()
 
-
-#f.close("Camera pose transformation matrices in img3 w.r.t img1.. \n Rotation: \n",r21,"\n Translation: \n",t21)
 
