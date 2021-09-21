@@ -81,7 +81,7 @@ ret,r2,t2,n2=cv.decomposeHomographyMat(M,mtx)"""
 f = open("OUTPUT.txt", "a")
 f.write("Camera pose transformation matrices in img2 w.r.t img1.. \n Rotation: \n"+str(r11)+"\n Translation: \n"+str(t11))
 f.write("\n---------------------------------------------------------\n")
-f.write("Camera pose transformation matrices in img2 w.r.t img1.. \n Rotation: \n"+str(r21)+"\n Translation: \n"+str(t21))
+f.write("Camera pose transformation matrices in img3 w.r.t img1.. \n Rotation: \n"+str(r21)+"\n Translation: \n"+str(t21))
 f.close()
 
 
