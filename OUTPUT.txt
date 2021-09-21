@@ -8,7 +8,7 @@ Camera pose transformation matrices in img2 w.r.t img1..
  [-0.00431856]
  [ 0.62834482]]
 ---------------------------------------------------------
-Camera pose transformation matrices in img2 w.r.t img1.. 
+Camera pose transformation matrices in img3 w.r.t img1.. 
  Rotation: 
 [[-0.78220249 -0.04316059  0.6215275 ]
  [-0.051569   -0.98968905 -0.13362718]
